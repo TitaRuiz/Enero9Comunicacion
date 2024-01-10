@@ -34,7 +34,7 @@ public class ClienteRobot {
         int numPregunta=0;
         Scanner teclado = new Scanner(System.in);
         System.out.printf("%s %n","-".repeat(50));
-        System.out.printf("%-20s %n","MENU DE OPCIONES");
+        System.out.printf("%20s %n","MENU DE OPCIONES");
         System.out.printf("%s %n","-".repeat(50));
         //Mostrar las preguntas del array
         for (int i=0; i<preguntas.length;i++) {
