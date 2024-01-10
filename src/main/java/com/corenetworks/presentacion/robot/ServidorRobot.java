@@ -20,8 +20,9 @@ public class ServidorRobot {
                 mensajeEntrada = new BufferedReader(new InputStreamReader(s1.getInputStream()));
                 String pregunta = mensajeEntrada.readLine();
                 int indice = Integer.parseInt(pregunta);
-                mensajeSalida = new PrintWriter(s1.getOutputStream());
+                mensajeSalida = new PrintWriter(s1.getOutputStream(),true);
                 mensajeSalida.println(respuestas[indice-1]);
+                System.out.println(respuestas[indice-1]);
 
             }
 
