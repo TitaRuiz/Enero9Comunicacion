@@ -30,11 +30,13 @@ public class ServidorCajero {
                               break;
                     case "2": if(saldo >= cantidad) {
                         mensajeAEnviar.println("Su saldo es -> "+(saldo-cantidad));
+                        saldo-=cantidad;
                     }  else{
                         mensajeAEnviar.println("Saldo insuficiente  -> "+(saldo));
                     }
                     break;
                     case "3":  mensajeAEnviar.println("Su saldo es -> "+(saldo+cantidad));
+                               saldo  += cantidad;
                 }
 
             }
