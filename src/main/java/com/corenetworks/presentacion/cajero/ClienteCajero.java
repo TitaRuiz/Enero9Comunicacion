@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ClienteCajero {
 
     private static Scanner teclado = new Scanner(System.in);
+
     public static void main(String[] args) {
         boolean pinOK = solicitarPIN();
         while (true) {
@@ -36,45 +37,45 @@ public class ClienteCajero {
     }
 
     private static boolean solicitarPIN() {
+        String pin = null;
+        System.out.println("Escriba el PIN");
+        pin = teclado.nextLine();
+        if (pin.equals("1234")) {
+            return true;
+        } else {
+            System.out.println("PIN INCORRECTO");
+            return false;
+        }
     }
 
     private static CuentaBancaria solicitarDatos() {
         CuentaBancaria cB1 = new CuentaBancaria();
 
         int tipoOperacion = 0;
-        String pin = null;
 
 
-        System.out.println("Escriba el PIN");
-        pin = teclado.nextLine();
-        if (pin.equals("1234")) {
-            System.out.printf("%s %n", "-".repeat(50));
-            System.out.printf("%s %n", "MENU BANCARIO");
-            System.out.printf("%s %n", "-".repeat(50));
-            System.out.printf("%s %n", "1) Consultar Saldo");
-            System.out.printf("%s %n", "2) Retirar una cantidad");
-            System.out.printf("%s %n", "3) Ingresar una cantidad");
-            System.out.printf("%s %n", "4) Salir");
-            System.out.printf("Escriba la opción -> ");
-            tipoOperacion = teclado.nextInt();
-            teclado.nextLine();
-            if (tipoOperacion == 4) {
-                return cB1;
-            }
-            System.out.printf("Escribir la cuenta -> ");
-            cB1.setId(teclado.nextLine());
-            if (tipoOperacion == 2 || tipoOperacion == 3) {
-                System.out.printf("Escribir la cantidad -> ");
-                cB1.setCantidad(teclado.nextDouble());
-            }
-            cB1.setTipoOperacion(Integer.toString(tipoOperacion));
+        System.out.printf("%s %n", "-".repeat(50));
+        System.out.printf("%s %n", "MENU BANCARIO");
+        System.out.printf("%s %n", "-".repeat(50));
+        System.out.printf("%s %n", "1) Consultar Saldo");
+        System.out.printf("%s %n", "2) Retirar una cantidad");
+        System.out.printf("%s %n", "3) Ingresar una cantidad");
+        System.out.printf("%s %n", "4) Salir");
+        System.out.printf("Escriba la opción -> ");
+        tipoOperacion = teclado.nextInt();
+        teclado.nextLine();
+        if (tipoOperacion == 4) {
             return cB1;
-
-        } else {
-            System.out.println("PIN INCORRECTO");
-            return cB1;
-
         }
+        System.out.printf("Escribir la cuenta -> ");
+        cB1.setId(teclado.nextLine());
+        if (tipoOperacion == 2 || tipoOperacion == 3) {
+            System.out.printf("Escribir la cantidad -> ");
+            cB1.setCantidad(teclado.nextDouble());
+        }
+        cB1.setTipoOperacion(Integer.toString(tipoOperacion));
+        return cB1;
+
 
     }
 }
