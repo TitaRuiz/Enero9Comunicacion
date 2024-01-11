@@ -16,6 +16,7 @@ public class ClienteCajero {
 
     public static void main(String[] args) {
 
+
         if (solicitarPIN()) {
             while (true) {
                 CuentaBancaria cB1 = solicitarDatos();
@@ -39,14 +40,21 @@ public class ClienteCajero {
     }
 
     private static boolean solicitarPIN() {
+        int contador = 0;
         String pin = null;
-        System.out.println("Escriba el PIN");
-        pin = teclado.nextLine();
-        if (pin.equals("1234")) {
-            return true;
-        } else {
-            System.out.println("PIN INCORRECTO");
-            return false;
+        while (true) {
+            System.out.println("Escriba el PIN");
+            pin = teclado.nextLine();
+            if (pin.equals("1234")) {
+                return true;
+            } else {
+                System.out.println("PIN INCORRECTO");
+                contador++;
+                if (contador == 3) {
+                    System.out.println("Recoje tu tarjeta en una de nuestras sucursales");
+                    return false;
+                }
+            }
         }
     }
 
