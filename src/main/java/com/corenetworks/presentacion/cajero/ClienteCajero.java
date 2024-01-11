@@ -15,23 +15,25 @@ public class ClienteCajero {
     private static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) {
-        boolean pinOK = solicitarPIN();
-        while (true) {
-            CuentaBancaria cB1 = solicitarDatos();
-            if (cB1.getTipoOperacion() == null) {
-                break;
-            }
-            System.out.println(cB1.toString());
-            try (Socket cliente = new Socket("localhost", 3000);) {
-                PrintWriter mensajeAEnviar = new PrintWriter(cliente.getOutputStream(), true);
-                mensajeAEnviar.println(cB1.getTipoOperacion() + "," + cB1.getId() + "," + cB1.getCantidad());
-                System.out.println("Esperando respuesta del servidor");
-                BufferedReader mesajeRecibido = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-                System.out.println(mesajeRecibido.readLine());
-            } catch (UnknownHostException e) {
-                System.out.println(e.toString());
-            } catch (IOException e) {
-                System.out.println(e.toString());
+
+        if (solicitarPIN()) {
+            while (true) {
+                CuentaBancaria cB1 = solicitarDatos();
+                if (cB1.getTipoOperacion() == null) {
+                    break;
+                }
+                System.out.println(cB1.toString());
+                try (Socket cliente = new Socket("localhost", 3000);) {
+                    PrintWriter mensajeAEnviar = new PrintWriter(cliente.getOutputStream(), true);
+                    mensajeAEnviar.println(cB1.getTipoOperacion() + "," + cB1.getId() + "," + cB1.getCantidad());
+                    System.out.println("Esperando respuesta del servidor");
+                    BufferedReader mesajeRecibido = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+                    System.out.println(mesajeRecibido.readLine());
+                } catch (UnknownHostException e) {
+                    System.out.println(e.toString());
+                } catch (IOException e) {
+                    System.out.println(e.toString());
+                }
             }
         }
     }
