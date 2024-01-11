@@ -37,6 +37,7 @@ public class ServidorCajero {
                     break;
                     case "3":  mensajeAEnviar.println("Su saldo es -> "+(saldo+cantidad));
                                saldo  += cantidad;
+                               break;
                 }
 
             }
